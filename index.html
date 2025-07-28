@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أداة المقارنة المالية - DXN</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Cairo', sans-serif; 
+        }
+        /* Custom Colors */
+        .bg-gold {
+            background-color: #FFD700; /* Gold color */
+        }
+        .text-burgundy {
+            color: #800020; /* Burgundy color */
+        }
+        .bg-burgundy {
+            background-color: #800020;
+        }
+        .border-burgundy {
+            border-color: #800020;
+        }
+        .focus\:ring-burgundy:focus {
+            --tw-ring-color: #800020;
+        }
+        .focus\:border-burgundy:focus {
+            --tw-border-opacity: 1;
+            border-color: #800020;
+        }
+    </style>
+</head>
+<body class="bg-[#F9F7F3]">
+
+    <!-- Header -->
+    <header class="bg-gold shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center h-16">
+                <h1 class="text-2xl font-bold text-burgundy">هناده دكسن</h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-12 px-8">
+        
+        <!-- Back Button -->
+        <section class="text-center mb-8">
+             <a href="https://morad1971.github.io/HANADA-DXN/" class="inline-block px-6 py-2 bg-gray-200 text-gray-800 font-semibold rounded-lg hover:bg-gray-300 transition duration-300 shadow-sm">
+                &larr; العودة إلى التطبيق الرئيسي
+            </a>
+        </section>
+
+        <!-- Comparison Tool Section -->
+        <section id="comparison-tool">
+            <div class="max-w-4xl mx-auto p-6 rounded-lg bg-white shadow-lg">
+                <h2 class="text-3xl font-bold text-gray-800 text-center">أداة المقارنة المالية الذكية</h2>
+                <p class="mt-4 text-lg text-gray-600 text-center">هل منتجات دكسن أوفر؟ خلينا نحسبها صح! اختاري نوع المنتج، ودعي الأداة تبحث وتقارن لكِ.</p>
+                
+                <div class="mt-8 space-y-4">
+                    <!-- Step 1: Select Product Type -->
+                    <div>
+                        <label for="product-type-select" class="block text-sm font-medium text-gray-700">اختاري نوع المنتج اللي بدك تقارنيه:</label>
+                        <select id="product-type-select" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-burgundy focus:border-burgundy sm:text-sm rounded-md">
+                            <option value="">-- اختاري من القائمة --</option>
+                            <option value="toothpaste">معجون الأسنان</option>
+                            <option value="coffee">القهوة</option>
+                            <option value="soap">الصابون</option>
+                            <option value="shampoo">الشامبو</option>
+                            <option value="cocoa_drink">مشروب الشوكولاتة (للأطفال)</option>
+                            <option value="talcum_powder">بودرة الجسم (التلك)</option>
+                            <option value="massage_oil">زيت التدليك</option>
+                            <option value="body_lotion">لوشن الجسم</option>
+                            <option value="lipstick">أحمر الشفاه</option>
+                            <option value="honey">العسل</option>
+                            <option value="jam">مربى الأناناس</option>
+                            <option value="vinegar">الخل</option>
+                            <option value="spirulina">المكملات الغذائية (سبيرولينا)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Results Area -->
+                <div id="comparison-results" class="mt-8">
+                    <!-- Comparison will be displayed here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center p-6 bg-gray-800 text-white mt-12">
+        <p>&copy; 2025 - تطبيق مبتكر لدعم فريقي.</p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const allProducts = [
+            {"Product Code": "PC006", "name": "معجون أسنان جانوزي", "DP": 5.85, "NMP": 7.02, "size": 150, "unit": "غم", "benefits": "طبيعي، علاجي للثة، آمن للأطفال، ومركز جداً."},
+            {"Product Code": "FB002", "name": "قهوة لينجزي 3 في 1", "DP": 10.20, "NMP": 13.75, "size": 20, "unit": "كيس", "benefits": "قليلة الكافيين، معززة بفطر الريشي لتقوية المناعة."},
+            {"Product Code": "PC036", "name": "صابون جانوزي", "DP": 2.70, "NMP": 3.24, "size": 2, "unit": "قطعة", "benefits": "طبيعية، تغذي البشرة ولا تسبب الجفاف، مفيدة للمشاكل الجلدية."},
+            {"Product Code": "PC004", "name": "شامبو جانوزي", "DP": 7.80, "NMP": 9.36, "size": 250, "unit": "مل", "benefits": "لطيف على فروة الرأس، يغذي بصيلات الشعر ويخفف التساقط."},
+            {"Product Code": "FB025", "name": "كوكوزي", "DP": 13.60, "NMP": 15.20, "size": 20, "unit": "كيس", "benefits": "مشروب كاكاو صحي للأطفال، يعزز التركيز والمناعة."},
+            {"Product Code": "PC015", "name": "بودرة التلك", "DP": 7.45, "NMP": 8.94, "size": 250, "unit": "غم", "benefits": "ناعمة ومهدئة للبشرة، معطرة بلطف ومناسبة للبشرة الحساسة."},
+            {"Product Code": "PC007", "name": "زيت جانو للتدليك", "DP": 7.60, "NMP": 9.12, "size": 75, "unit": "مل", "benefits": "طبيعي 100%، يريح العضلات والمفاصل ويرطب البشرة بعمق."},
+            {"Product Code": "SC024", "name": "لوشن الألوة لليدين والجسم", "DP": 6.00, "NMP": 7.20, "size": 250, "unit": "مل", "benefits": "غير دهني، يرطب البشرة بعمق ويحميها من الجفاف."},
+            {"Product Code": "SC014", "name": "أحمر شفاه جانوزي", "DP": 12.40, "NMP": 14.88, "size": 1, "unit": "قطعة", "benefits": "مرطب علاجي بخلاصة الصبار، لا يسبب تشقق الشفاه."},
+            {"Product Code": "FB368", "name": "عسل السدر الطبيعي", "DP": 29.90, "NMP": 35.88, "size": 500, "unit": "غم", "benefits": "طبيعي 100%، يقوي المناعة، مصدر للطاقة، ومضاد للميكروبات."},
+            {"Product Code": "FB033", "name": "مربى أناناس جانو", "DP": 5.40, "NMP": 7.20, "size": 400, "unit": "غم", "benefits": "طبيعي، معزز بالجانوديرما، ومفيد للهضم."},
+            {"Product Code": "FB050", "name": "خل DXN", "DP": 25.80, "NMP": 32.20, "size": 700, "unit": "مل", "benefits": "يساعد على تحسين الهضم, يدعم توازن الجسم, يخلص الجسم من السموم."},
+            {"Product Code": "HF031", "name": "أقراص سبيرولينا", "DP": 16.35, "NMP": 19.90, "size": 120, "unit": "قرص", "benefits": "غذاء متكامل (سوبر فود)، غني بالبروتين والفيتامينات والمعادن."}
+        ];
+
+        const comparisonData = {
+            "toothpaste": { dxnCode: "PC006", competitor: "Sensodyne", competitorSize: 75, competitorUnit: "مل", competitorPrice: 3.50 },
+            "coffee": { dxnCode: "FB002", competitor: "Nescafé 3 in 1", competitorSize: 24, competitorUnit: "كيس", competitorPrice: 4.00 },
+            "soap": { dxnCode: "PC036", competitor: "Dove Soap", competitorSize: 4, competitorUnit: "قطعة", competitorPrice: 3.00 },
+            "shampoo": { dxnCode: "PC004", competitor: "Head & Shoulders", competitorSize: 400, competitorUnit: "مل", competitorPrice: 4.50 },
+            "cocoa_drink": { dxnCode: "FB025", competitor: "Nesquik", competitorSize: 18, competitorUnit: "كيس", competitorPrice: 3.00 },
+            "talcum_powder": { dxnCode: "PC015", competitor: "Johnson's Baby Powder", competitorSize: 200, competitorUnit: "غم", competitorPrice: 2.50 },
+            "massage_oil": { dxnCode: "PC007", competitor: "Olive Oil", competitorSize: 100, competitorUnit: "مل", competitorPrice: 3.00 },
+            "body_lotion": { dxnCode: "SC024", competitor: "Nivea Body Lotion", competitorSize: 400, competitorUnit: "مل", competitorPrice: 5.00 },
+            "lipstick": { dxnCode: "SC014", competitor: "Maybelline Lipstick", competitorSize: 1, competitorUnit: "قطعة", competitorPrice: 8.00 },
+            "honey": { dxnCode: "FB368", competitor: "Al Shifa Natural Honey", competitorSize: 500, competitorUnit: "غم", competitorPrice: 10.00 },
+            "jam": { dxnCode: "FB033", competitor: "St. Dalfour Jam", competitorSize: 284, competitorUnit: "غم", competitorPrice: 3.50 },
+            "vinegar": { dxnCode: "FB050", competitor: "Apple Cider Vinegar", competitorSize: 500, competitorUnit: "مل", competitorPrice: 4.00 },
+            "spirulina": { dxnCode: "HF031", competitor: "Generic Spirulina", competitorSize: 100, competitorUnit: "قرص", competitorPrice: 15.00 }
+        };
+
+        const productTypeSelect = document.getElementById('product-type-select');
+        const resultsContainer = document.getElementById('comparison-results');
+
+        productTypeSelect.addEventListener('change', () => {
+            const productType = productTypeSelect.value;
+            if (!productType) {
+                resultsContainer.innerHTML = '';
+                return;
+            }
+
+            resultsContainer.innerHTML = '<p class="text-center text-gray-500">جاري البحث والمقارنة...</p>';
+
+            setTimeout(() => { // Simulate search delay
+                const commercialProduct = comparisonData[productType];
+                const dxnProduct = allProducts.find(p => p['Product Code'] === commercialProduct.dxnCode);
+
+                const commercialPricePerUnit = commercialProduct.competitorPrice / commercialProduct.competitorSize;
+                const equivalentCommercialCost = commercialPricePerUnit * dxnProduct.size;
+                
+                const savings = equivalentCommercialCost - dxnProduct.DP;
+
+                let savingsText = '';
+                if (savings > 0) {
+                    savingsText = `<p class="text-2xl font-bold text-green-600">التوفير المحتمل: ${savings.toFixed(2)} د.أ</p>`;
+                } else {
+                    savingsText = `<p class="text-2xl font-bold text-red-600">التكلفة الإضافية: ${Math.abs(savings).toFixed(2)} د.أ</p>`;
+                }
+
+                resultsContainer.innerHTML = `
+                    <h3 class="text-2xl font-bold text-center text-gray-800 mb-6">النتيجة</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Commercial Product Card -->
+                        <div class="border-2 border-gray-300 p-4 rounded-lg">
+                            <h4 class="text-xl font-bold text-center text-gray-700">${commercialProduct.competitor} (مثال)</h4>
+                            <hr class="my-3">
+                            <p class="text-center"><strong>السعر:</strong> ${commercialProduct.competitorPrice.toFixed(2)} د.أ</p>
+                            <p class="text-center"><strong>الحجم:</strong> ${commercialProduct.competitorSize} ${commercialProduct.competitorUnit}</p>
+                            <div class="mt-4 bg-red-100 p-3 rounded-lg text-center">
+                                <p class="text-sm text-red-800">سعر الوحدة</p>
+                                <p class="text-2xl font-bold text-red-900">${commercialPricePerUnit.toFixed(3)} د.أ / ${dxnProduct.unit}</p>
+                            </div>
+                        </div>
+
+                        <!-- DXN Product Card -->
+                        <div class="border-2 border-green-600 p-4 rounded-lg bg-green-50">
+                            <h4 class="text-xl font-bold text-center text-green-800">${dxnProduct.name}</h4>
+                            <hr class="my-3">
+                            <p class="text-center"><strong>السعر (عضو):</strong> ${dxnProduct.DP.toFixed(2)} د.أ</p>
+                            <p class="text-center"><strong>السعر (غير عضو):</strong> ${dxnProduct.NMP.toFixed(2)} د.أ</p>
+                            <p class="text-center"><strong>الحجم:</strong> ${dxnProduct.size} ${dxnProduct.unit}</p>
+                            <div class="mt-4 bg-green-200 p-3 rounded-lg text-center">
+                                <p class="text-sm text-green-800">سعر الوحدة</p>
+                                <p class="text-2xl font-bold text-green-900">${(dxnProduct.DP / dxnProduct.size).toFixed(3)} د.أ / ${dxnProduct.unit}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-center bg-yellow-100 p-4 rounded-lg">
+                        <p class="text-yellow-800">لو اشتريتِ المنتج التجاري بنفس حجم عبوة دكسن (${dxnProduct.size} ${dxnProduct.unit})، لكان سعره تقريباً:</p>
+                        <p class="text-2xl font-bold text-yellow-900">${equivalentCommercialCost.toFixed(2)} د.أ</p>
+                        <hr class="my-3 border-yellow-300">
+                        ${savingsText}
+                        <p class="mt-2 text-yellow-800">بالإضافة للفوائد الصحية اللي بتاخديها من منتج دكسن، مثل: **${dxnProduct.benefits}**</p>
+                    </div>
+                `;
+            }, 1000);
+        });
+    });
+    </script>
+</body>
+</html>
