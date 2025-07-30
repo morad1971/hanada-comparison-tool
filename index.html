@@ -7,17 +7,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Almarai:wght@700&display=swap" rel="stylesheet">
     <style>
         body { 
             font-family: 'Cairo', sans-serif; 
-            scroll-behavior: smooth;
         }
-        .bg-brand-beige { background-color: #F5F3F0; }
+        .font-title {
+            font-family: 'Almarai', sans-serif;
+        }
+        .bg-brand-beige { background-color: #F9F7F3; }
         .bg-brand-green { background-color: #4A5C43; }
         .text-brand-green { color: #4A5C43; }
         .text-brand-dark { color: #333333; }
-        .border-brand-green { border-color: #4A5C43; }
         .input-field {
             border-width: 2px;
             border-color: #D1D5DB;
@@ -31,116 +32,111 @@
             border-color: #4A5C43;
             box-shadow: 0 0 0 3px rgba(74, 92, 67, 0.2);
         }
+        .comparison-card {
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
 <body class="bg-brand-beige text-brand-dark">
 
-    <main class="max-w-4xl mx-auto py-12 px-6">
+    <main class="max-w-5xl mx-auto py-12 px-6 space-y-12">
 
         <!-- Header -->
-        <section class="text-center mb-10">
-            <h1 class="text-3xl md:text-4xl font-bold text-brand-green">أداة المقارنة المالية الذكية</h1>
-            <p class="mt-4 text-lg text-gray-700 max-w-2xl mx-auto">
-                هل منتجات دكسن أوفر حقًا؟ أدخلي مصاريفك الشهرية الحالية على المنتجات الأساسية وشاهدي بنفسك كيف يمكن تحويل مصروفك إلى استثمار في صحتك وفرصتك.
+        <section class="text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-brand-green font-title">أداة المقارنة المالية الذكية</h1>
+            <p class="mt-4 text-lg text-gray-700 max-w-3xl mx-auto">
+                اكتشفي بنفسك كيف يمكن تحويل مصروفك الشهري إلى استثمار في صحتك وفرصتك مع دكسن.
             </p>
         </section>
         
         <!-- Back Button -->
-        <section class="text-center mb-8">
+        <section class="text-center">
              <a href="https://morad1971.github.io/HANADA-DXN/" class="inline-block px-6 py-2 bg-gray-200 text-gray-800 font-semibold rounded-lg hover:bg-gray-300 transition duration-300 shadow-sm">
                 &larr; العودة إلى التطبيق الرئيسي
             </a>
         </section>
 
-        <!-- Comparison Form -->
-        <div id="comparison-form" class="space-y-8">
-
-            <!-- Category 1: Drinks -->
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h2 class="text-2xl font-bold text-brand-green border-r-4 border-brand-green pr-4 mb-6">المشروبات</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="coffee" class="block font-semibold mb-2">كم تصرفين شهرياً على القهوة؟</label>
-                        <input type="number" id="coffee" class="input-field" placeholder="مثال: 15 دينار" data-dxn-price="10">
-                    </div>
-                    <div>
-                        <label for="tea" class="block font-semibold mb-2">كم تصرفين شهرياً على الشاي؟</label>
-                        <input type="number" id="tea" class="input-field" placeholder="مثال: 5 دنانير" data-dxn-price="7">
-                    </div>
-                    <div>
-                        <label for="cocoa" class="block font-semibold mb-2">كم تصرفين شهرياً على الكاكاو للأطفال؟</label>
-                        <input type="number" id="cocoa" class="input-field" placeholder="مثال: 8 دنانير" data-dxn-price="9">
-                    </div>
-                </div>
+        <!-- Section 1: Product-by-Product Comparison -->
+        <section class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-brand-dark font-title mb-6 border-b-2 pb-3 border-brand-green">1. مقارنة منتج بمنتج</h2>
+            <div>
+                <label for="product-select" class="block text-lg font-semibold mb-2">اختاري منتج دكسن الذي تريدين مقارنته:</label>
+                <select id="product-select" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-brand-green">
+                    <option value="">-- اختاري للمقارنة --</option>
+                </select>
             </div>
-
-            <!-- Category 2: Personal Care -->
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h2 class="text-2xl font-bold text-brand-green border-r-4 border-brand-green pr-4 mb-6">العناية الشخصية</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="toothpaste" class="block font-semibold mb-2">كم تصرفين شهرياً على معجون الأسنان؟</label>
-                        <input type="number" id="toothpaste" class="input-field" placeholder="مثال: 4 دنانير" data-dxn-price="5">
-                    </div>
-                    <div>
-                        <label for="soap" class="block font-semibold mb-2">كم تصرفين شهرياً على الصابون؟</label>
-                        <input type="number" id="soap" class="input-field" placeholder="مثال: 3 دنانير" data-dxn-price="3">
-                    </div>
-                    <div>
-                        <label for="shampoo" class="block font-semibold mb-2">كم تصرفين شهرياً على الشامبو؟</label>
-                        <input type="number" id="shampoo" class="input-field" placeholder="مثال: 6 دنانير" data-dxn-price="7">
-                    </div>
-                     <div>
-                        <label for="body-wash" class="block font-semibold mb-2">كم تصرفين شهرياً على رغوة الجسم؟</label>
-                        <input type="number" id="body-wash" class="input-field" placeholder="مثال: 5 دنانير" data-dxn-price="7">
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Calculation Button -->
-            <div class="text-center pt-4">
-                <button id="calculate-btn" class="px-10 py-4 bg-brand-green text-white font-bold rounded-lg hover:bg-opacity-90 transition duration-300 shadow-lg text-lg">
-                    احسبي وقارني الآن
-                </button>
-            </div>
-        </div>
-
-        <!-- Results Section (Initially Hidden) -->
-        <section id="results-section" class="hidden mt-12 bg-white p-8 rounded-lg shadow-xl">
-            <h2 class="text-3xl font-bold text-brand-green text-center mb-6">النتائج والتحليل</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
-                <!-- Current Spending -->
-                <div>
-                    <h3 class="text-xl font-semibold mb-2">إجمالي مصاريفك الحالية</h3>
-                    <p id="current-total" class="text-4xl font-bold text-red-600"></p>
-                    <p class="text-gray-500">مصروف شهري يذهب لمنتجات تجارية</p>
-                </div>
-                <!-- DXN Spending -->
-                <div>
-                    <h3 class="text-xl font-semibold mb-2">التكلفة التقديرية مع دكسن</h3>
-                    <p id="dxn-total" class="text-4xl font-bold text-green-600"></p>
-                    <p class="text-gray-500">استثمار شهري في منتجات صحية</p>
-                </div>
-            </div>
-
-            <div class="text-center mt-8 border-t pt-6">
-                <h3 class="text-2xl font-bold mb-2">الفرق الشهري</h3>
-                <p id="difference" class="text-3xl font-bold"></p>
-            </div>
-
-            <div id="analysis" class="mt-8 border-t pt-6 text-gray-700 leading-relaxed space-y-4">
-                <h3 class="text-2xl font-bold text-brand-dark text-center">تحليل النتائج: القصة الكاملة وراء الأرقام</h3>
-                <p>الأرقام اللي فوق بتعطيكي جزء من الصورة، بس القصة الحقيقية أعمق من هيك. لما تستبدلي منتجاتك بمنتجات دكسن، إنتي فعلياً بتعملي 3 أشياء ذكية بنفس الوقت:</p>
-                <ul class="list-disc pr-5 space-y-2">
-                    <li><strong>أولاً: بتحولي مصروف عادي لاستثمار بصحتك.</strong> بدل ما تدفعي مصاري على منتجات ممكن تضرك على المدى الطويل، إنتي بتستثمري بمنتجات طبيعية بتقوي مناعتك وبتعطيكي طاقة وحيوية. صحتك ما إلها سعر!</li>
-                    <li><strong>ثانياً: بتحولي مصروفك لنقاط.</strong> كل منتج بتشتريه من دكسن عليه نقاط. هاي النقاط بتتجمع بحسابك كل شهر، ومع الوقت بتتحول لعمولات ومكافآت مالية. يعني مصروفك برجعلك!</li>
-                    <li><strong>ثالثاً: بتفتحي باب لفرصة عمل.</strong> مجرد استخدامك للمنتجات بخليكي جزء من مشروع كبير. لما تشاركي تجربتك مع غيرك، بتبني فريق عمل وبتحققي دخل إضافي ممكن يغير حياتك.</li>
-                </ul>
-                <p class="font-bold text-center text-lg text-brand-green pt-4">السؤال الحقيقي مش "كم رح أدفع زيادة؟"، السؤال هو "كم القيمة اللي رح آخذها مقابل كل دينار بصرفه؟". مع دكسن، القيمة أكبر بكتير من مجرد منتج على الرف.</p>
+            <div id="comparison-display" class="mt-6">
+                <!-- Comparison details will be injected here -->
             </div>
         </section>
 
+        <!-- Section 2: Full Budget Calculator -->
+        <section class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-brand-dark font-title mb-6 border-b-2 pb-3 border-brand-green">2. حاسبة الميزانية الشاملة</h2>
+            <div id="comparison-form" class="space-y-8">
+                <!-- New Questions -->
+                <div class="bg-gray-50 p-4 rounded-lg border space-y-4">
+                    <div>
+                        <label for="decision-maker" class="block font-semibold mb-2">من الذي يمتلك قرار الشراء والميزانية؟</label>
+                        <select id="decision-maker" class="w-full p-2 border-2 border-gray-300 rounded-lg">
+                            <option value="me">أنا</option>
+                            <option value="other">شخص آخر (مثل الزوج)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="shopping-place" class="block font-semibold mb-2">ما هو المكان المعتاد للشراء منه؟</label>
+                        <select id="shopping-place" class="w-full p-2 border-2 border-gray-300 rounded-lg">
+                            <option value="local">البقالة المحلية</option>
+                            <option value="supermarket">سلسلة أسواق كبيرة (مثل سامح مول)</option>
+                            <option value="corp">المؤسسة المدنية أو العسكرية</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Spending Inputs -->
+                <p class="font-semibold text-center">الآن، أدخلي مصاريفك الشهرية التقريبية:</p>
+                <div class="p-4 border rounded-lg">
+                    <h3 class="text-xl font-bold text-brand-green mb-4">المشروبات</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="coffee" class="block font-semibold mb-2">القهوة</label>
+                            <input type="number" id="coffee" class="input-field" placeholder="المصروف الشهري" data-dxn-price="10.2">
+                        </div>
+                        <div>
+                            <label for="tea" class="block font-semibold mb-2">الشاي</label>
+                            <input type="number" id="tea" class="input-field" placeholder="المصروف الشهري" data-dxn-price="13.6">
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 border rounded-lg">
+                    <h3 class="text-xl font-bold text-brand-green mb-4">العناية الشخصية</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="toothpaste" class="block font-semibold mb-2">معجون الأسنان</label>
+                            <input type="number" id="toothpaste" class="input-field" placeholder="المصروف الشهري" data-dxn-price="5.85">
+                        </div>
+                        <div>
+                            <label for="soap" class="block font-semibold mb-2">الصابون</label>
+                            <input type="number" id="soap" class="input-field" placeholder="المصروف الشهري" data-dxn-price="2.7">
+                        </div>
+                        <div>
+                            <label for="shampoo" class="block font-semibold mb-2">الشامبو</label>
+                            <input type="number" id="shampoo" class="input-field" placeholder="المصروف الشهري" data-dxn-price="7.8">
+                        </div>
+                    </div>
+                </div>
+                <!-- Calculation Button -->
+                <div class="text-center pt-4">
+                    <button id="calculate-btn" class="px-10 py-3 bg-brand-green text-white font-bold rounded-lg hover:bg-opacity-90 transition duration-300 shadow-lg text-lg">
+                        عرض التحليل والنصائح
+                    </button>
+                </div>
+            </div>
+            <!-- Results Section (Initially Hidden) -->
+            <section id="results-section" class="hidden mt-10 bg-gray-50 p-6 rounded-lg">
+                <!-- Dynamic advice and results will be injected here -->
+            </section>
+        </section>
     </main>
 
     <footer class="text-center p-6 bg-gray-800 text-white mt-12">
@@ -149,47 +145,231 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function () {
+        const allProducts = [
+            {"Product Code": "FB301", "name": "شاي لاتيه لينجزي", "category": "أغذية ومشروبات", "PV": 12.0, "DP": 13.6, "benefits": "نكهة غنية ومميزة, يحتوي على مستخلص فطر الجانوديرما, يعزز الطاقة والحيوية", "dxn_size": "12 كيس × 21 جرام", "commercial_equivalent": { "name": "شاي لاتيه تجاري", "size": "10 أكياس", "search_query": "سعر شاي لاتيه في الأردن" }},
+            {"Product Code": "FB002", "name": "قهوة لينجزي 3 في 1", "category": "أغذية ومشروبات", "PV": 10.0, "DP": 10.2, "benefits": "خالي من الألوان والنكهات الصناعية, يعزز النشاط والحيوية, يقوي الجهاز المناعي", "dxn_size": "20 كيس × 21 جرام", "commercial_equivalent": { "name": "قهوة سريعة التحضير", "size": "200 جرام", "search_query": "سعر قهوة سريعة التحضير 200 جرام في الأردن" } },
+            {"Product Code": "FB005", "name": "عصير روسيل", "category": "أغذية ومشروبات", "PV": 12.0, "DP": 9.25, "benefits": "غني بفيتامين C ومضادات الأكسدة, يدعم صحة القلب والدورة الدموية, يحسن الهضم", "dxn_size": "285 مل", "commercial_equivalent": { "name": "عصير كركديه تجاري", "size": "250 مل", "search_query": "سعر عصير الكركديه في الأردن" }},
+            {"Product Code": "FB007", "name": "مورينزي", "category": "أغذية ومشروبات", "PV": 17.0, "DP": 13.25, "benefits": "يوازن درجة الحموضة بالجسم, يساعد على إزالة السموم, ينشط الدورة الدموية, يحسن الهضم", "dxn_size": "285 مل", "commercial_equivalent": { "name": "عصير نوني تجاري", "size": "300 مل", "search_query": "سعر عصير النوني في الأردن" }},
+            {"Product Code": "FB025", "name": "كوكوزي", "category": "أغذية ومشروبات", "PV": 13.0, "DP": 13.6, "benefits": "يعزز الطاقة والتركيز, يدعم صحة القلب, يساعد في نمو الدماغ عند الأطفال", "dxn_size": "20 كيس × 32 جرام", "commercial_equivalent": { "name": "مشروب كاكاو تجاري", "size": "500 جرام", "search_query": "سعر كاكاو نسكويك 500 جرام في الأردن" } },
+            {"Product Code": "FB032", "name": "سيريال سبيرولينا", "category": "أغذية ومشروبات", "PV": 30.0, "DP": 28.0, "benefits": "غني بالبروتين والفيتامينات والمعادن, يعزز المناعة, يساعد في تنظيم الوزن", "dxn_size": "30 كيس × 30 جرام", "commercial_equivalent": { "name": "سيريال الشوفان", "size": "500 جرام", "search_query": "سعر حبوب إفطار الشوفان في الأردن" }},
+            {"Product Code": "FB050", "name": "خل DXN", "category": "أغذية ومشروبات", "PV": 28.0, "DP": 25.8, "benefits": "يساعد على تحسين الهضم, يدعم توازن الجسم, يعزز طاقة الجسم, يخلص الجسم من السموم", "dxn_size": "700 مل", "commercial_equivalent": { "name": "خل تفاح عضوي", "size": "500 مل", "search_query": "سعر خل التفاح العضوي في الأردن" }},
+            {"Product Code": "FB057", "name": "كيوي DXN", "category": "أغذية ومشروبات", "PV": 22.0, "DP": 18.55, "benefits": "غني بفيتامين C, يدعم صحة الجهاز الهضمي, يعزز المناعة, يقلل من ضغط الدم", "dxn_size": "285 مل", "commercial_equivalent": { "name": "عصير كيوي تجاري", "size": "250 مل", "search_query": "سعر عصير الكيوي في الأردن" }},
+            {"Product Code": "FB065", "name": "مورينزي (700 مل)", "category": "أغذية ومشروبات", "PV": 35.0, "DP": 29.7, "benefits": "يساعد على إزالة السموم وتجديد الخلايا, ينشط الدورة الدموية, يحسن الهضم ويقلل الحموضة", "dxn_size": "700 مل", "commercial_equivalent": { "name": "عصير نوني تجاري", "size": "500 مل", "search_query": "سعر عصير النوني في الأردن" }},
+            {"Product Code": "FB066", "name": "قهوة لينجزي 3 في 1 لايت", "category": "أغذية ومشروبات", "PV": 10.0, "DP": 10.2, "benefits": "مذاق سلس وكريمي, قليل الكافيين, يعزز المناعة ويساعد في طرد السموم", "dxn_size": "20 كيس × 21 جرام", "commercial_equivalent": { "name": "قهوة لايت تجارية", "size": "200 جرام", "search_query": "سعر قهوة لايت في الأردن" }},
+            {"Product Code": "FB069", "name": "كورديسيبس سيريال", "category": "أغذية ومشروبات", "PV": 53.0, "DP": 48.65, "benefits": "يدعم الجهاز التنفسي ويزيد الطاقة, يعزز القدرة على التحمل, يحسن الدورة الدموية", "dxn_size": "20 كيس × 30 جرام", "commercial_equivalent": { "name": "سيريال الشوفان بالكاكاو", "size": "500 جرام", "search_query": "سعر حبوب إفطار الشوفان بالكاكاو في الأردن" }},
+            {"Product Code": "FB033", "name": "مربى أناناس جانو", "category": "أغذية ومشروبات", "PV": 6.0, "DP": 5.4, "benefits": "يساعد على إخراج السموم من الجسم, يقوي المناعة, يفيد المعدة ويساعد على الهضم", "dxn_size": "400 جرام", "commercial_equivalent": { "name": "مربى أناناس تجاري", "size": "450 جرام", "search_query": "سعر مربى الأناناس في الأردن" }},
+            {"Product Code": "FB129", "name": "قهوة كورديسيبس 3 في 1", "category": "أغذية ومشروبات", "PV": 11.0, "DP": 12.9, "benefits": "تساعد على زيادة مستوى الطاقة, تتغلب على التعب, تزيد اليقظة, تحسن الدورة الدموية", "dxn_size": "20 كيس × 21 جرام", "commercial_equivalent": { "name": "قهوة بالطاقة تجارية", "size": "20 كيس", "search_query": "سعر قهوة بالطاقة في الأردن" }},
+            {"Product Code": "FB130", "name": "قهوة الكريمة", "category": "أغذية ومشروبات", "PV": 11.0, "DP": 10.75, "benefits": "غنية بالرائحة, قوام حريري ناعم, مذاق لا يقاوم, خالية من السكر المضاف", "dxn_size": "20 كيس × 14 جرام", "commercial_equivalent": { "name": "قهوة كريمية تجارية", "size": "200 جرام", "search_query": "سعر قهوة كريمية في الأردن" }},
+            {"Product Code": "FB143", "name": "زي منت بلس", "category": "أغذية ومشروبات", "PV": 28.0, "DP": 25.3, "benefits": "يمنح راحة فورية للحلق, يترك شعوراً بالانتعاش والنظافة, يساعد في تهدئة السعال", "dxn_size": "15 مل", "commercial_equivalent": { "name": "قطرات للحلق", "size": "20 مل", "search_query": "سعر قطرات الحلق في الأردن" }},
+            {"Product Code": "FB155", "name": "ليمونزي", "category": "أغذية ومشروبات", "PV": 8.0, "DP": 8.8, "benefits": "ينعش الجسم، يعزز الطاقة والتركيز، يروي العطش بفعالية", "dxn_size": "20 كيس × 22 جرام", "commercial_equivalent": { "name": "شاي بالليمون سريع التحضير", "size": "20 كيس", "search_query": "سعر شاي بالليمون في الأردن" }},
+            {"Product Code": "FB172", "name": "نودلز جانو", "category": "أغذية ومشروبات", "PV": 5.0, "DP": 6.6, "benefits": "يحتوي على جانوديرما، خالٍ من التلوين والنكهات الصناعية", "dxn_size": "4 أكياس × 85 جرام", "commercial_equivalent": { "name": "نودلز سريعة التحضير", "size": "5 أكياس", "search_query": "سعر نودلز إندومي في الأردن" }},
+            {"Product Code": "FB173", "name": "نودلز سبيرولينا", "category": "أغذية ومشروبات", "PV": 5.0, "DP": 6.6, "benefits": "يحتوي على سبيرولينا، خالٍ من التلوين والنكهات الصناعية", "dxn_size": "4 أكياس × 85 جرام", "commercial_equivalent": { "name": "نودلز سريعة التحضير", "size": "5 أكياس", "search_query": "سعر نودلز إندومي في الأردن" }},
+            {"Product Code": "FB176", "name": "زيت جوز الهند العضوي", "category": "أغذية ومشروبات", "PV": 14.0, "DP": 15.3, "benefits": "غني بالأحماض الدهنية متوسطة السلسلة سهلة الهضم", "dxn_size": "500 مل", "commercial_equivalent": { "name": "زيت جوز هند عضوي", "size": "500 مل", "search_query": "سعر زيت جوز الهند العضوي في الأردن" }},
+            {"Product Code": "FB368", "name": "عسل السدر الطبيعي", "category": "أغذية ومشروبات", "PV": 28.0, "DP": 29.9, "benefits": "تقوية المناعة، مضاد للميكروبات، دعم الجهاز الهضمي، مصدر للطاقة", "dxn_size": "350 جرام", "commercial_equivalent": { "name": "عسل سدر طبيعي", "size": "500 جرام", "search_query": "سعر عسل السدر في الأردن" }},
+            {"Product Code": "FB219", "name": "ألو فيتا", "category": "أغذية ومشروبات", "PV": 4.0, "DP": 3.55, "benefits": "مشروب منعش ومرطب، يدعم الجهاز الهضمي، يساعد على إزالة السموم", "dxn_size": "240 مل", "commercial_equivalent": { "name": "مشروب الصبار", "size": "250 مل", "search_query": "سعر مشروب الصبار في الأردن" }},
+            {"Product Code": "FB360", "name": "سكر DXN", "category": "أغذية ومشروبات", "PV": 2.0, "DP": 1.9, "benefits": "يمنح حلاوة متوازنة دون أن يطغى على النكهة الطبيعية للمشروب", "dxn_size": "500 جرام", "commercial_equivalent": { "name": "سكر أبيض", "size": "1 كيلو", "search_query": "سعر كيلو السكر في الأردن" }},
+            {"Product Code": "HF029", "name": "أقراص عرف الأسد", "category": "المكملات الغذائية الصحية", "PV": 26.0, "DP": 24.1, "benefits": "دعم صحة الدماغ والجهاز العصبي، تحسين الذاكرة والتركيز، دعم الجهاز الهضمي", "dxn_size": "120 قرص", "commercial_equivalent": { "name": "مكمل عرف الأسد", "size": "60 كبسولة", "search_query": "سعر مكمل عرف الأسد في الأردن" }},
+            {"Product Code": "HF030", "name": "أقراص كورديسيبس", "category": "المكملات الغذائية الصحية", "PV": 60.0, "DP": 54.95, "benefits": "زيادة الطاقة والأداء الرياضي، دعم صحة الجهاز التنفسي، دعم وظائف الكلى والكبد", "dxn_size": "60 قرص", "commercial_equivalent": { "name": "مكمل كورديسيبس", "size": "60 كبسولة", "search_query": "سعر مكمل كورديسيبس في الأردن" }},
+            {"Product Code": "HF031", "name": "أقراص سبيرولينا (120)", "category": "المكملات الغذائية الصحية", "PV": 20.0, "DP": 16.35, "benefits": "غذاء متكامل (بروتين, فيتامينات, معادن), مضاد للأكسدة, دعم صحة الدم والقلب", "dxn_size": "120 قرص", "commercial_equivalent": { "name": "مكمل سبيرولينا", "size": "100 قرص", "search_query": "سعر مكمل سبيرولينا في الأردن" }},
+            {"Product Code": "HF038", "name": "أقراص سبيرولينا (500)", "category": "المكملات الغذائية الصحية", "PV": 70.0, "DP": 56.85, "benefits": "غذاء متكامل (بروتين, فيتامينات, معادن), مضاد للأكسدة, دعم صحة الدم والقلب", "dxn_size": "500 قرص", "commercial_equivalent": { "name": "مكمل سبيرولينا", "size": "500 قرص", "search_query": "سعر مكمل سبيرولينا في الأردن" }},
+            {"Product Code": "HF039", "name": "مايكوفيجي", "category": "المكملات الغذائية الصحية", "PV": 70.0, "DP": 51.65, "benefits": "تنظيف الجهاز الهضمي والقولون, إدارة الوزن, إزالة السموم من الجسم, مصدر غني بالألياف", "dxn_size": "400 جرام", "commercial_equivalent": { "name": "مكمل ألياف غذائية", "size": "300 جرام", "search_query": "سعر مكمل ألياف في الأردن" }},
+            {"Product Code": "HF041", "name": "مسحوق فطر الريشي", "category": "المكملات الغذائية الصحية", "PV": 70.0, "DP": 53.7, "benefits": "دعم وتقوية جهاز المناعة, التخفيف من التوتر وتحسين النوم, إزالة السموم ودعم صحة الكبد", "dxn_size": "70 جرام", "commercial_equivalent": { "name": "مسحوق فطر الريشي", "size": "50 جرام", "search_query": "سعر مسحوق فطر الريشي في الأردن" }},
+            {"Product Code": "HF082", "name": "حبيبات لقاح النحل", "category": "المكملات الغذائية الصحية", "PV": 17.0, "DP": 14.1, "benefits": "غذاء طبيعي متكامل, مصدر للطاقة والحيوية, دعم جهاز المناعة, المساعدة في تخفيف الحساسية الموسمية", "dxn_size": "120 قرص", "commercial_equivalent": { "name": "مكمل لقاح النحل", "size": "100 كبسولة", "search_query": "سعر مكمل لقاح النحل في الأردن" }},
+            {"Product Code": "PC004", "name": "شامبو جانوزي", "category": "العناية الشخصية", "PV": 11.0, "DP": 7.8, "benefits": "ينظف الشعر بلطف ويغذيه بفضل خلاصة الجانوديرما وفيتامين B5", "dxn_size": "250 مل", "commercial_equivalent": { "name": "شامبو تجاري", "size": "400 مل", "search_query": "سعر شامبو بانتين 400 مل في الأردن" } },
+            {"Product Code": "PC005", "name": "رغوة الجسم جانوزي", "category": "العناية الشخصية", "PV": 11.0, "DP": 7.8, "benefits": "ينظف البشرة دون إزالة الزيوت الطبيعية ويتركها ناعمة", "dxn_size": "250 مل", "commercial_equivalent": { "name": "سائل استحمام تجاري", "size": "500 مل", "search_query": "سعر سائل استحمام لوكس 500 مل في الأردن" }},
+            {"Product Code": "PC006", "name": "معجون أسنان جانوزي", "category": "العناية الشخصية", "PV": 6.0, "DP": 5.85, "benefits": "طبيعي بخلاصة الجانوديرما، بدون فلورايد. ينظف الأسنان واللثة", "dxn_size": "150 جرام", "commercial_equivalent": { "name": "معجون أسنان تجاري", "size": "100 جرام", "search_query": "سعر معجون أسنان 100 جرام في الأردن" } },
+            {"Product Code": "PC007", "name": "زيت جانو للتدليك", "category": "العناية الشخصية", "PV": 9.0, "DP": 7.6, "benefits": "مثالي لتهدئة العضلات والمفاصل والبشرة", "dxn_size": "75 مل", "commercial_equivalent": { "name": "زيت مساج", "size": "100 مل", "search_query": "سعر زيت مساج في الأردن" }},
+            {"Product Code": "PC015", "name": "بودرة التلك", "category": "العناية الشخصية", "PV": 9.0, "DP": 7.45, "benefits": "معطرة ومهدئة للبشرة بخلاصة الجانوديرما", "dxn_size": "250 جرام", "commercial_equivalent": { "name": "بودرة جسم", "size": "200 جرام", "search_query": "سعر بودرة جونسون للجسم في الأردن" }},
+            {"Product Code": "PC036", "name": "صابون جانوزي", "category": "العناية الشخصية", "PV": 3.0, "DP": 2.7, "benefits": "ينظف البشرة بلطف ويحافظ على رطوبتها", "dxn_size": "قطعتان × 80 جرام", "commercial_equivalent": { "name": "صابون تجاري", "size": "125 جرام", "search_query": "سعر صابون دوف 125 جرام في الأردن" } },
+            {"Product Code": "SC014", "name": "كريم شجرة الشاي", "category": "العناية بالبشرة ومستحضرات التجميل", "PV": 6.0, "DP": 5.85, "benefits": "مهدئ ومطهر للبشرة بفضل زيت شجرة الشاي", "dxn_size": "30 جرام", "commercial_equivalent": { "name": "كريم زيت شجرة الشاي", "size": "25 جرام", "search_query": "سعر كريم زيت شجرة الشاي في الأردن" }},
+            {"Product Code": "SC020", "name": "جل الصبار المنظف", "category": "العناية بالبشرة ومستحضرات التجميل", "PV": 7.0, "DP": 5.65, "benefits": "جل منظف خالٍ من الصابون، ينظف البشرة بلطف مع الحفاظ على رطوبتها", "dxn_size": "100 مل", "commercial_equivalent": { "name": "غسول وجه بالصبار", "size": "150 مل", "search_query": "سعر غسول وجه بالصبار في الأردن" }},
+            {"Product Code": "SC024", "name": "لوشن الألوة لليدين والجسم", "category": "العناية بالبشرة ومستحضرات التجميل", "PV": 7.0, "DP": 6.0, "benefits": "لوشن غير دهني لترطيب الجسم بالكامل", "dxn_size": "250 مل", "commercial_equivalent": { "name": "لوشن جسم", "size": "400 مل", "search_query": "سعر لوشن فازلين للجسم في الأردن" }}
+        ];
+
+        const productSelect = document.getElementById('product-select');
+        const comparisonDisplay = document.getElementById('comparison-display');
+
+        // Populate select dropdown for section 1
+        allProducts.sort((a,b) => a.name.localeCompare(b.name, 'ar'));
+        allProducts.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item['Product Code'];
+            option.textContent = item.name;
+            productSelect.appendChild(option);
+        });
+
+        productSelect.addEventListener('change', function() {
+            if (this.value === "") {
+                comparisonDisplay.innerHTML = "";
+                return;
+            }
+            const selectedProduct = allProducts.find(p => p['Product Code'] === this.value);
+            displayComparisonInterface(selectedProduct);
+        });
+
+        function parseSize(sizeString) {
+            let value = 0;
+            let unit = 'وحدة';
+            if (!sizeString) return { value, unit }; 
+            if (sizeString.includes('جرام')) unit = 'جرام';
+            else if (sizeString.includes('مل')) unit = 'مل';
+            if (sizeString.includes('×') || sizeString.includes('*')) {
+                const parts = sizeString.replace(/كيس|قطعتان/g, '').replace(' ', '').split(/[*×]/);
+                if (parts.length === 2) {
+                    const num1 = parseFloat(parts[0]) || 2;
+                    const num2 = parseFloat(parts[1]);
+                    if (!isNaN(num1) && !isNaN(num2)) value = num1 * num2;
+                }
+            } else {
+                const match = sizeString.match(/[\d.]+/);
+                if (match) value = parseFloat(match[0]);
+            }
+            return { value, unit };
+        }
+
+        function displayComparisonInterface(product) {
+            if (!product || !product.commercial_equivalent) {
+                comparisonDisplay.innerHTML = '<p class="text-center text-gray-500">المعلومات غير متوفرة لهذا المنتج.</p>';
+                return;
+            }
+            comparisonDisplay.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="comparison-card border-2 border-green-200 bg-green-50 p-4 rounded-lg">
+                        <h4 class="text-xl font-bold text-green-800">${product.name}</h4>
+                        <p class="font-semibold text-gray-600 mb-2">الحجم: ${product.dxn_size || 'N/A'}</p>
+                        <p class="text-2xl font-bold my-3">${product.DP.toFixed(2)} د.أ <span class="text-sm font-normal">(سعر العضو)</span></p>
+                        <p class="font-semibold text-blue-600 mb-3">تحصلين على: ${product.PV.toFixed(2)} نقطة (PV)</p>
+                        <ul class="space-y-1 text-sm list-disc pr-4">${(product.benefits || '').split(',').map(b => `<li>${b.trim()}</li>`).join('')}</ul>
+                    </div>
+                    <div class="comparison-card border-2 border-gray-300 bg-gray-50 p-4 rounded-lg flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-700">${product.commercial_equivalent.name}</h4>
+                            <p class="font-semibold text-gray-600 mb-2">الحجم التقريبي الشائع: ${product.commercial_equivalent.size}</p>
+                            <div class="grid grid-cols-2 gap-x-4 mt-4">
+                                <div><label for="commercial-price" class="block mb-2 font-semibold">كم سعره؟</label><input type="number" id="commercial-price" class="input-field" placeholder="بالدينار"></div>
+                                <div><label for="commercial-size" class="block mb-2 font-semibold">ما هو حجمه؟</label><input type="number" id="commercial-size" class="input-field" placeholder="جرام / مل"></div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <button id="do-comparison-btn" class="w-full mb-2 px-6 py-2 bg-brand-green text-white font-bold rounded-lg hover:bg-opacity-90 transition">قارني الآن</button>
+                            <button id="search-commercial-btn" class="w-full px-6 py-2 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition">ابحث عن منتج مشابه في السوق الأردني</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+                    <h4 class="text-lg font-bold text-yellow-800">ملاحظة هامة: القيمة مقابل السعر</h4>
+                    <p class="mt-2 text-sm text-yellow-700">عند المقارنة، انتبهي جيداً لحجم العبوة. قد يبدو سعر المنتج التجاري أقل، لكن قد تكون عبوته أصغر. للحصول على مقارنة عادلة، قومي بإدخال حجم المنتج التجاري وسعره، وستقوم الأداة بحساب "السعر لكل جرام" أو "السعر لكل مل" لتظهري القيمة الحقيقية.</p>
+                </div>
+                <div id="comparison-result" class="mt-6"></div>`;
+            
+            document.getElementById('do-comparison-btn').addEventListener('click', () => {
+                const commercialPrice = parseFloat(document.getElementById('commercial-price').value) || 0;
+                const commercialSize = parseFloat(document.getElementById('commercial-size').value) || 0;
+                const resultContainer = document.getElementById('comparison-result');
+                if (commercialPrice === 0 || commercialSize === 0) {
+                    resultContainer.innerHTML = '<p class="text-center text-red-500 font-semibold">الرجاء إدخال سعر وحجم المنتج التجاري للمقارنة.</p>';
+                    return;
+                }
+                const dxnSizeInfo = parseSize(product.dxn_size);
+                const dxnPrice = product.DP;
+                if (dxnSizeInfo.value === 0) {
+                    resultContainer.innerHTML = '<p class="text-center text-red-500 font-semibold">لا يمكن حساب القيمة لهذا المنتج حالياً.</p>';
+                    return;
+                }
+                const dxnPricePerUnit = dxnPrice / dxnSizeInfo.value;
+                const commercialPricePerUnit = commercialPrice / commercialSize;
+                const differencePerUnit = dxnPricePerUnit - commercialPricePerUnit;
+                let message = `<div class="grid grid-cols-2 gap-4 text-center"><div class="p-2 bg-gray-100 rounded"><p class="font-semibold">سعر المنتج التجاري لكل ${dxnSizeInfo.unit}</p><p class="font-bold text-lg">${commercialPricePerUnit.toFixed(3)} د.أ</p></div><div class="p-2 bg-green-100 rounded"><p class="font-semibold">سعر منتج دكسن لكل ${dxnSizeInfo.unit}</p><p class="font-bold text-lg text-green-700">${dxnPricePerUnit.toFixed(3)} د.أ</p></div></div><div class="mt-4">`;
+                if (differencePerUnit > 0) {
+                    message += `بناءً على السعر لكل ${dxnSizeInfo.unit}، منتج دكسن <strong class="text-red-600">أغلى</strong> بمقدار <strong class="text-red-600">${differencePerUnit.toFixed(3)} د.أ</strong>. لكن، تذكري أن هذا الفارق هو استثمار في منتج صحي وطبيعي يمنحكِ <strong class="text-blue-600">${product.PV.toFixed(2)} نقطة</strong>.`;
+                } else if (differencePerUnit < 0) {
+                    message += `رائع! بناءً على السعر لكل ${dxnSizeInfo.unit}، منتج دكسن الصحي <strong class="text-green-600">أوفر</strong> من منتجك الحالي بمقدار <strong class="text-green-600">${Math.abs(differencePerUnit).toFixed(3)} د.أ</strong>، وبالإضافة للتوفير تحصلين على <strong class="text-blue-600">${product.PV.toFixed(2)} نقطة</strong>.`;
+                } else {
+                    message += `التكلفة متساوية تقريباً! أنتِ تحصلين على منتج صحي بنفس السعر، بالإضافة إلى <strong class="text-blue-600">${product.PV.toFixed(2)} نقطة</strong> مجانية.`;
+                }
+                message += `</div>`;
+                resultContainer.innerHTML = `<div class="text-center bg-blue-50 border border-blue-200 p-4 rounded-lg"><h4 class="text-xl font-bold text-brand-dark">الخلاصة (حسب القيمة الحقيقية)</h4><div class="mt-2">${message}</div></div>`;
+            });
+            document.getElementById('search-commercial-btn').addEventListener('click', () => {
+                const searchQuery = product.commercial_equivalent.search_query;
+                const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`;
+                window.open(googleUrl, '_blank');
+            });
+        }
+
+        // --- Logic for section 2: Full Budget Calculator ---
         const calculateBtn = document.getElementById('calculate-btn');
         const resultsSection = document.getElementById('results-section');
         const form = document.getElementById('comparison-form');
         
         calculateBtn.addEventListener('click', function() {
             let currentTotal = 0;
-            let dxnTotal = 0;
-
             const inputs = form.querySelectorAll('input[type="number"]');
-            
             inputs.forEach(input => {
-                const currentValue = parseFloat(input.value) || 0;
-                const dxnPrice = parseFloat(input.dataset.dxnPrice) || 0;
-
-                currentTotal += currentValue;
-                
-                // If user entered a value, assume they replace it with one DXN product
-                if (currentValue > 0) {
-                    dxnTotal += dxnPrice;
-                }
+                currentTotal += parseFloat(input.value) || 0;
             });
 
-            // Display totals
-            document.getElementById('current-total').textContent = `${currentTotal.toFixed(2)} دينار`;
-            document.getElementById('dxn-total').textContent = `${dxnTotal.toFixed(2)} دينار`;
-
-            // Display difference
-            const difference = dxnTotal - currentTotal;
-            const differenceElement = document.getElementById('difference');
-            if (difference > 0) {
-                differenceElement.textContent = `التكلفة تزيد بمقدار ${difference.toFixed(2)} دينار شهرياً، لكن بقيمة صحية وفرصة أكبر!`;
-                differenceElement.className = 'text-3xl font-bold text-amber-600';
-            } else if (difference < 0) {
-                differenceElement.textContent = `أنتِ توفرين ${Math.abs(difference).toFixed(2)} دينار شهرياً!`;
-                differenceElement.className = 'text-3xl font-bold text-green-600';
-            } else {
-                differenceElement.textContent = `التكلفة متساوية تقريباً، لكنكِ تكسبين الصحة والفرصة!`;
-                differenceElement.className = 'text-3xl font-bold text-gray-800';
+            if (currentTotal === 0) {
+                resultsSection.innerHTML = '<p class="text-center text-red-500 font-semibold">الرجاء إدخال بعض المصاريف أولاً.</p>';
+                resultsSection.classList.remove('hidden');
+                return;
             }
 
-            // Show results
+            const decisionMaker = document.getElementById('decision-maker').value;
+            const shoppingPlace = document.getElementById('shopping-place').value;
+            
+            let adviceHtml = '';
+            // Generate advice based on selections
+            if (decisionMaker === 'me') {
+                adviceHtml += `<div class="mb-4 p-4 bg-blue-50 border-r-4 border-blue-500"><h4 class="font-bold text-blue-800">نصيحة لكِ: أنتِ تملكين القرار!</h4><p class="text-sm text-blue-700">كونك صاحبة القرار، فهذه فرصتك الذهبية لتنظيم مصروف بيتك بطريقة ذكية. استخدامك لهذه الأداة هو أول خطوة لتصبحي "مستهلكة حكيمة". انظري للأرقام في الأسفل، وفكري كيف يمكنك تحويل هذا المصروف الشهري الثابت إلى استثمار يعود عليكِ بالصحة والمال.</p></div>`;
+            } else {
+                adviceHtml += `<div class="mb-4 p-4 bg-purple-50 border-r-4 border-purple-500"><h4 class="font-bold text-purple-800">نصيحة لإقناع الشريك: استخدمي لغة الأرقام!</h4><p class="text-sm text-purple-700">عندما يكون القرار مشتركاً، فإن أفضل طريقة للنقاش هي الأرقام والنتائج الواضحة. استخدمي "سلة المشتريات المقترحة" في الأسفل. قولي له: "انظر، بنفس المبلغ الذي ندفعه كل شهر، يمكننا شراء هذه المنتجات الصحية التي ستفيد صحتنا وصحة الأولاد، وبنفس الوقت ستدخل لنا نقاطاً يمكن أن تتحول إلى دخل إضافي". ركزي على فكرة "نفس المصروف، لكن بقيمة أعلى".</p></div>`;
+            }
+
+            if (shoppingPlace === 'corp') {
+                adviceHtml += `<div class="mb-4 p-4 bg-yellow-50 border-r-4 border-yellow-500"><h4 class="font-bold text-yellow-800">نصيحة حول الشراء من المؤسسة:</h4><p class="text-sm text-yellow-700">صحيح أن أسعار المؤسسة قد تكون أقل، لكن من المهم أن نوازن بين السعر والجودة. منتجات دكسن تقدم قيمة مضافة لا تجدينها في المنتجات التجارية: مكونات طبيعية، فوائد صحية مثبتة، ونقاط تتحول إلى مال. السؤال ليس "أيهما أرخص؟" بل "أيهما يقدم قيمة أفضل لصحتي وميزانيتي على المدى الطويل؟".</p></div>`;
+            }
+            
+            // Generate suggested products
+            let budget = currentTotal;
+            const suggestionCart = [];
+            const priorityProducts = allProducts.filter(p => ['PC006', 'FB002', 'PC036', 'PC004'].includes(p['Product Code']));
+            
+            for (const product of priorityProducts) {
+                if (budget >= product.DP) {
+                    suggestionCart.push(product);
+                    budget -= product.DP;
+                }
+            }
+
+            let suggestionHtml = suggestionCart.map(p => `<li>${p.name} - <strong>${p.DP.toFixed(2)} د.أ</strong></li>`).join('');
+            let suggestionTotal = suggestionCart.reduce((sum, p) => sum + p.DP, 0);
+            let suggestionPV = suggestionCart.reduce((sum, p) => sum + p.PV, 0);
+
+            resultsSection.innerHTML = `
+                <h3 class="text-2xl font-bold text-brand-green text-center mb-6">التحليل والنصائح الشخصية</h3>
+                ${adviceHtml}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center border-t pt-6">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">إجمالي مصاريفك الحالية</h4>
+                        <p class="text-4xl font-bold text-red-600">${currentTotal.toFixed(2)} د.أ</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">يمكنكِ تحويلها إلى استثمار!</h4>
+                        <p class="text-gray-600">انظري كيف يمكن استثمار هذا المبلغ في صحتك.</p>
+                    </div>
+                </div>
+                <div class="mt-8 border-t pt-6">
+                    <h4 class="text-xl font-bold text-center mb-4">مقترح سلة مشتريات دكسن بنفس القيمة:</h4>
+                    <div class="bg-white p-4 rounded-lg border">
+                        <ul class="list-disc pr-5 space-y-2">${suggestionHtml}</ul>
+                        <div class="mt-4 pt-4 border-t font-bold text-center">
+                            <p>المجموع التقريبي: <span class="text-brand-green">${suggestionTotal.toFixed(2)} د.أ</span></p>
+                            <p>مجموع النقاط المحصلة: <span class="text-blue-600">${suggestionPV.toFixed(2)} PV</span></p>
+                        </div>
+                    </div>
+                </div>
+            `;
             resultsSection.classList.remove('hidden');
             resultsSection.scrollIntoView({ behavior: 'smooth' });
         });
